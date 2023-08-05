@@ -81,3 +81,8 @@ func lerComando() int {
 	fmt.Println("A seleção escolhida foi: ", resposta)
 	return resposta
 }
+
+func leSitesDoAquivo() []string {
+	var sites []string
+	return sites
+}
