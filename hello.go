@@ -49,7 +49,11 @@ func monitorando() {
 
 func testaSite(site string) {
 
-	resp, _ := http.Get(site)
+	resp, err := http.Get(site)
+
+	if err != nil {
+		fmt.Println("Ocorreu um erro ", err)
+	}
 
 	if resp.StatusCode == 200 {
 		fmt.Println("Site:", site, "foi carregado com sucesso!")
@@ -76,7 +80,4 @@ func lerComando() int {
 	fmt.Scan(&resposta)
 	fmt.Println("A seleção escolhida foi: ", resposta)
 	return resposta
-}
-func output() {
-
 }
