@@ -1,9 +1,12 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"io"
 	"net/http"
 	"os"
+	"strings"
 	"time"
 )
 
@@ -35,7 +38,7 @@ func main() {
 func monitorando() {
 	for i := 0; i < monitoramento; i++ {
 		fmt.Println("Monitorando...")
-		sites := []string{"https://random-status-code.herokuapp.com", "https://www.alura.com.br", "https://www.caelum.com.br"}
+		sites := leSitesDoAquivo()
 		for i, site := range sites {
 			site = sites[i]
 			testaSite(site)
@@ -89,6 +92,19 @@ func leSitesDoAquivo() []string {
 
 	if err != nil {
 		fmt.Println("Ocorreu um erro ", err)
+	}
+
+	leitor := bufio.NewReader(arquivo)
+
+	for {
+		linha, err := leitor.ReadString('\n')
+		linha = strings.TrimSpace(linha)
+
+		sites = append(sites, linha)
+
+		if err == io.EOF {
+			break
+		}
 	}
 
 	arquivo.Close()
