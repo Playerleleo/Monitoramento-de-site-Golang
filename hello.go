@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
+	"net/http"
 	"os"
 )
-import _ "os"
 
 func main() {
 	exibeIntroducao()
@@ -13,7 +13,7 @@ func main() {
 
 	switch comando {
 	case 1:
-		fmt.Println("monitorando")
+		monitorando()
 	case 2:
 		fmt.Println("exibindo logs")
 	case 3:
@@ -22,6 +22,17 @@ func main() {
 	default:
 		fmt.Println("Algo deu errado")
 		os.Exit(-1)
+	}
+}
+
+func monitorando() {
+	fmt.Println("Monitorando...")
+	site := "https://www.alura.com.br/"
+	resp, _ := http.Get(site)
+	if resp.StatusCode == 200 {
+		fmt.Println("O site foi carregado com sucesso")
+	} else {
+		fmt.Println("O site esta fora do ar")
 	}
 }
 
