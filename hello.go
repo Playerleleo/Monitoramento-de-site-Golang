@@ -8,20 +8,22 @@ import (
 
 func main() {
 	exibeIntroducao()
-	exibeMenu()
-	comando := lerComando()
+	for {
+		exibeMenu()
+		comando := lerComando()
 
-	switch comando {
-	case 1:
-		monitorando()
-	case 2:
-		fmt.Println("exibindo logs")
-	case 3:
-		fmt.Println("saindo....")
-		os.Exit(0)
-	default:
-		fmt.Println("Algo deu errado")
-		os.Exit(-1)
+		switch comando {
+		case 1:
+			monitorando()
+		case 2:
+			fmt.Println("exibindo logs")
+		case 3:
+			fmt.Println("saindo....")
+			os.Exit(0)
+		default:
+			fmt.Println("Algo deu errado")
+			os.Exit(-1)
+		}
 	}
 }
 
