@@ -60,8 +60,10 @@ func testaSite(site string) {
 
 	if resp.StatusCode == 200 {
 		fmt.Println("Site:", site, "foi carregado com sucesso!")
+		registraLogs(site, true)
 	} else {
 		fmt.Println("Site:", site, "está com problemas. Status Code:", resp.StatusCode)
+		registraLogs(site, false)
 	}
 }
 
@@ -110,4 +112,8 @@ func leSitesDoAquivo() []string {
 	arquivo.Close()
 
 	return sites
+}
+
+func registraLogs(site string, online bool) {
+
 }
